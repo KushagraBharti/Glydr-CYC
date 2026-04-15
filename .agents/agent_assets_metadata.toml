@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Oj2hasODydmZpFwQsWqLM"
+uri = "file://artifacts/mockup-sandbox/public/images/apex-hero.png"
+type = "image"
+title = "Apex Legends hero banner"
+
+[[generated]]
+id = "iTuZoYrAj9P0J73WFL2jt"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-apex.png"
+type = "image"
+title = "Apex Legends cover art"
+
+[[generated]]
+id = "m6kPgWXdads_CT1wi-m4P"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-valorant.png"
+type = "image"
+title = "Valorant cover art"
+
+[[generated]]
+id = "A2BtZXZm6Kn7tXOEXgY6U"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-fortnite.png"
+type = "image"
+title = "Fortnite cover art"
+
+[[generated]]
+id = "Q34Y-rJEyLCynXqsXlm6-"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-cod.png"
+type = "image"
+title = "Call of Duty cover art"
+
+[[generated]]
+id = "yxs2DKjxol5xd1wAVg87j"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-ow2.png"
+type = "image"
+title = "Overwatch 2 cover art"
+
+[[generated]]
+id = "nBoR06Tcb-BZtGZVhx3z3"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-cs2.png"
+type = "image"
+title = "CS2 cover art"
+
+[[generated]]
+id = "jrdoaAeoR87-hpR56jq5A"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-elden.png"
+type = "image"
+title = "Elden Ring cover art"
+
+[[generated]]
+id = "Pipn5_uwjV6dh8dr4h4Z7"
+uri = "file://artifacts/mockup-sandbox/public/images/cover-rocket.png"
+type = "image"
+title = "Rocket League cover art"

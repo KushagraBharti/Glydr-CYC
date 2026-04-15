@@ -1,0 +1,15 @@
+{
+  "session": {
+    "isAuthenticated": true,
+    "authMode": "dev-bypass",
+    "userName": "Dev Pilot",
+    "shortcutHint": "Ctrl+K auth bypass enabled"
+  },
+  "users": [
+    {
+      "id": "dev-user",
+      "name": "Dev Pilot",
+      "role": "developer"
+    }
+  ]
+}

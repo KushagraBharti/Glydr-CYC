@@ -1,0 +1,437 @@
+[
+  {
+    "slug": "pro-movement-config",
+    "gameSlug": "apex-legends",
+    "gameName": "Apex Legends",
+    "name": "Pro Movement Config",
+    "creator": "GlydrTeam",
+    "rating": 4.9,
+    "usage": "14.8k",
+    "version": "v2.3",
+    "tier": "Official",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Optimized for tap-strafing and rapid directional changes. Official tournament standard.",
+    "recommended": true,
+    "featured": true,
+    "reviewCount": 2104,
+    "publishedAt": "Oct 12, 2023",
+    "heroNote": "Compatible with Control Panel 3.1+",
+    "overview": {
+      "summary": "The definitive movement profile for competitive Apex Legends. Tuned specifically for players who prioritize advanced movement mechanics without sacrificing close-range aiming precision.",
+      "optimizedFor": [
+        "Instant Response: zero deadzone configuration on the left stick",
+        "Movement Tech: super-glide and zip-line focused tuning",
+        "Close Quarters: aggressive right-stick response curve"
+      ],
+      "recommendedPlaystyle": "Best suited for aggressive players who prefer SMGs and shotguns. The higher sensitivity rewards fast thumb control.",
+      "whatsNew": "Adjusted the outer threshold on the right stick and tightened trigger deadzones for faster semi-auto firing."
+    },
+    "configSections": [
+      {
+        "id": "aim",
+        "label": "Aim / Look (Right Stick)",
+        "subtitle": "Response curve, deadzone, outer threshold",
+        "icon": "R",
+        "values": [
+          { "label": "Response Curve", "value": "Linear (Aggressive)", "highlight": true },
+          { "label": "Deadzone", "value": "3% (Minimal)" },
+          { "label": "Outer Threshold", "value": "2%" }
+        ]
+      },
+      {
+        "id": "move",
+        "label": "Movement (Left Stick)",
+        "subtitle": "Deadzone, max input",
+        "icon": "L",
+        "values": [
+          { "label": "Deadzone", "value": "0% (Instant)", "highlight": true },
+          { "label": "Max Input Threshold", "value": "90%" }
+        ]
+      },
+      {
+        "id": "triggers",
+        "label": "Triggers (L2/R2)",
+        "subtitle": "Actuation point, hair-trigger settings",
+        "icon": "T",
+        "values": [
+          { "label": "Mode", "value": "Digital (Hair Trigger)", "highlight": true },
+          { "label": "Actuation Point", "value": "10%" }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Official",
+      "publishedCount": 34
+    },
+    "versions": [
+      { "version": "v2.3", "label": "v2.3 (Current)", "publishedAt": "Oct 12, 2023", "notes": "Adjusted outer threshold and trigger deadzones.", "current": true },
+      { "version": "v2.2", "label": "v2.2", "publishedAt": "Sep 04, 2023", "notes": "Fixed stick drift issues for older controllers." },
+      { "version": "v2.1", "label": "v2.1", "publishedAt": "Aug 15, 2023", "notes": "Optimized for Season 18 movement changes." }
+    ],
+    "relatedProfileSlugs": ["low-sensitivity-aim-lab", "ranked-competitive-v3", "recoil-control-master"]
+  },
+  {
+    "slug": "low-sensitivity-aim-lab",
+    "gameSlug": "apex-legends",
+    "gameName": "Apex Legends",
+    "name": "Low Sensitivity Aim Lab",
+    "creator": "AimGods",
+    "rating": 4.8,
+    "usage": "8.2k",
+    "version": "v1.1",
+    "tier": "Verified",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Pixel-perfect tracking for medium to long range engagements.",
+    "reviewCount": 804,
+    "publishedAt": "Sep 09, 2023",
+    "heroNote": "Built for precision tracking.",
+    "overview": {
+      "summary": "A calmer Apex aiming profile focused on smoother tracking and better long-range consistency.",
+      "optimizedFor": [
+        "Reduced acceleration for fine corrections",
+        "Stable ADS tuning for beam weapons",
+        "Safer entry point for players leaving default settings"
+      ],
+      "recommendedPlaystyle": "Works best for mid-range anchor roles and players who value consistency over raw turn speed.",
+      "whatsNew": "Minor sensitivity cleanup and updated compatibility notes."
+    },
+    "configSections": [
+      {
+        "id": "aim",
+        "label": "Aim / Look (Right Stick)",
+        "subtitle": "Tracking-first values",
+        "icon": "R",
+        "values": [
+          { "label": "Response Curve", "value": "Linear (Calm)", "highlight": true },
+          { "label": "Deadzone", "value": "4%" }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Verified",
+      "publishedCount": 8
+    },
+    "versions": [
+      { "version": "v1.1", "label": "v1.1 (Current)", "publishedAt": "Sep 09, 2023", "notes": "Tracking tune refresh.", "current": true }
+    ],
+    "relatedProfileSlugs": ["pro-movement-config", "ranked-competitive-v3"]
+  },
+  {
+    "slug": "controller-aim-assist-max",
+    "gameSlug": "call-of-duty-warzone",
+    "gameName": "Call of Duty: Warzone",
+    "name": "Controller Aim Assist Max",
+    "creator": "GlydrTeam",
+    "rating": 4.7,
+    "usage": "21.4k",
+    "version": "v3.0",
+    "tier": "Official",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Maximizes rotational aim assist engagement with a high linear sensitivity profile.",
+    "reviewCount": 1200,
+    "publishedAt": "Nov 03, 2023",
+    "heroNote": "Built for Warzone controller players.",
+    "overview": {
+      "summary": "High-response Warzone profile tuned around rotational aim assist and close-range fights.",
+      "optimizedFor": [
+        "Fast snap adjustments",
+        "Low-friction trigger response",
+        "Tournament-ready defaults"
+      ],
+      "recommendedPlaystyle": "Aggressive controller users pushing close-range engagements.",
+      "whatsNew": "Updated trigger timings for current Warzone patch."
+    },
+    "configSections": [
+      {
+        "id": "aim",
+        "label": "Aim / Look",
+        "subtitle": "Warzone controller values",
+        "icon": "R",
+        "values": [
+          { "label": "Response Curve", "value": "Dynamic", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Official",
+      "publishedCount": 34
+    },
+    "versions": [
+      { "version": "v3.0", "label": "v3.0 (Current)", "publishedAt": "Nov 03, 2023", "notes": "Patch refresh.", "current": true }
+    ],
+    "relatedProfileSlugs": ["building-and-edits", "tournament-standard"]
+  },
+  {
+    "slug": "building-and-edits",
+    "gameSlug": "fortnite",
+    "gameName": "Fortnite",
+    "name": "Building & Edits",
+    "creator": "GlydrTeam",
+    "rating": 4.6,
+    "usage": "11.1k",
+    "version": "v1.4",
+    "tier": "Official",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Builder-first setup for faster edits, cleaner piece control, and better response.",
+    "reviewCount": 904,
+    "publishedAt": "Aug 18, 2023",
+    "heroNote": "Fortnite edit-speed profile.",
+    "overview": {
+      "summary": "Fortnite-oriented profile with faster edit cadence and responsive build flow.",
+      "optimizedFor": [
+        "Low friction edit confirms",
+        "Quicker piece placement",
+        "Predictable movement curve"
+      ],
+      "recommendedPlaystyle": "Players focused on piece control and speed.",
+      "whatsNew": "Small movement cleanup and build sensitivity re-balance."
+    },
+    "configSections": [
+      {
+        "id": "build",
+        "label": "Build Flow",
+        "subtitle": "Edit and placement timing",
+        "icon": "B",
+        "values": [
+          { "label": "Edit Assist", "value": "Fast", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Official",
+      "publishedCount": 34
+    },
+    "versions": [
+      { "version": "v1.4", "label": "v1.4 (Current)", "publishedAt": "Aug 18, 2023", "notes": "Edit sensitivity refresh.", "current": true }
+    ],
+    "relatedProfileSlugs": ["controller-aim-assist-max"]
+  },
+  {
+    "slug": "ranked-competitive-v3",
+    "gameSlug": "apex-legends",
+    "gameName": "Apex Legends",
+    "name": "Ranked Competitive v3",
+    "creator": "GlydrTeam",
+    "rating": 4.9,
+    "usage": "3.2k",
+    "version": "v3.1",
+    "tier": "Official",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Balanced configuration for solo-queue ranked play. Good all-rounder.",
+    "reviewCount": 620,
+    "publishedAt": "Oct 21, 2023",
+    "heroNote": "Balanced all-round Apex ranked setup.",
+    "overview": {
+      "summary": "Safer Apex all-rounder with less aggressive movement tuning than the flagship official profile.",
+      "optimizedFor": [
+        "Balanced ADS values",
+        "Better recoil control",
+        "Lower learning curve"
+      ],
+      "recommendedPlaystyle": "Ranked grinders who want consistency in solo or duo queues.",
+      "whatsNew": "Added slightly lower outer threshold for steadier tracking."
+    },
+    "configSections": [
+      {
+        "id": "ranked",
+        "label": "Ranked Balance",
+        "subtitle": "All-round competition values",
+        "icon": "A",
+        "values": [
+          { "label": "Balance Mode", "value": "Enabled", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Official",
+      "publishedCount": 34
+    },
+    "versions": [
+      { "version": "v3.1", "label": "v3.1 (Current)", "publishedAt": "Oct 21, 2023", "notes": "Ranked tuning refresh.", "current": true }
+    ],
+    "relatedProfileSlugs": ["pro-movement-config", "low-sensitivity-aim-lab"]
+  },
+  {
+    "slug": "recoil-control-master",
+    "gameSlug": "apex-legends",
+    "gameName": "Apex Legends",
+    "name": "Recoil Control Master",
+    "creator": "NoRecoil",
+    "rating": 4.5,
+    "usage": "9.8k",
+    "version": "v1.0",
+    "tier": "Verified",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Specific deadzone tweaks to make Flatline and R301 recoil easier to manage.",
+    "reviewCount": 510,
+    "publishedAt": "Jul 11, 2023",
+    "heroNote": "Beam-focused recoil profile.",
+    "overview": {
+      "summary": "Apex recoil-first profile targeted at smoothing out horizontal spray control.",
+      "optimizedFor": [
+        "Stable right-stick micro adjustments",
+        "Predictable recoil drag",
+        "Comfortable medium-range tracking"
+      ],
+      "recommendedPlaystyle": "Players who want a softer recoil-management setup without aggressive movement tuning.",
+      "whatsNew": "Initial public release."
+    },
+    "configSections": [
+      {
+        "id": "recoil",
+        "label": "Recoil Management",
+        "subtitle": "Beam-focused tuning",
+        "icon": "R",
+        "values": [
+          { "label": "Deadzone", "value": "5%", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Verified",
+      "publishedCount": 4
+    },
+    "versions": [
+      { "version": "v1.0", "label": "v1.0 (Current)", "publishedAt": "Jul 11, 2023", "notes": "Initial release.", "current": true }
+    ],
+    "relatedProfileSlugs": ["pro-movement-config", "low-sensitivity-aim-lab"]
+  },
+  {
+    "slug": "high-dpi-aggressive",
+    "gameSlug": "overwatch-2",
+    "gameName": "Overwatch 2",
+    "name": "High DPI Aggressive",
+    "creator": "WKeyOnly",
+    "rating": 4.3,
+    "usage": "1.4k",
+    "version": "v1.2",
+    "tier": "Community",
+    "compatibility": "compatible",
+    "compatibleLabel": "Compatible",
+    "description": "Extremely fast response curve for aggressive close-quarters combat.",
+    "reviewCount": 182,
+    "publishedAt": "Jun 02, 2023",
+    "heroNote": "Fast-turn Overwatch setup.",
+    "overview": {
+      "summary": "High-speed Overwatch 2 profile for players who want immediate snap turns and close-range control.",
+      "optimizedFor": [
+        "Fast flick response",
+        "Low-latency feel",
+        "Close-quarters pressure"
+      ],
+      "recommendedPlaystyle": "Aggressive flank and dive play.",
+      "whatsNew": "Updated community notes and compatibility labels."
+    },
+    "configSections": [
+      {
+        "id": "speed",
+        "label": "Speed",
+        "subtitle": "High-DPI feel",
+        "icon": "S",
+        "values": [
+          { "label": "Sensitivity Bias", "value": "Aggressive", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.4.2+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Community",
+      "publishedCount": 2
+    },
+    "versions": [
+      { "version": "v1.2", "label": "v1.2 (Current)", "publishedAt": "Jun 02, 2023", "notes": "Community refresh.", "current": true }
+    ],
+    "relatedProfileSlugs": ["tournament-standard"]
+  },
+  {
+    "slug": "tournament-standard",
+    "gameSlug": "rocket-league",
+    "gameName": "Rocket League",
+    "name": "Tournament Standard",
+    "creator": "ALGS_Pro",
+    "rating": 4.7,
+    "usage": "4.1k",
+    "version": "v2.1",
+    "tier": "Verified",
+    "compatibility": "requires-update",
+    "compatibleLabel": "Firmware Update Req",
+    "description": "Exact replica of settings used by top controller pros in recent tournaments.",
+    "reviewCount": 366,
+    "publishedAt": "May 09, 2023",
+    "heroNote": "Requires newer firmware for full parity.",
+    "overview": {
+      "summary": "Competitive Rocket League profile modeled after recent tournament setups.",
+      "optimizedFor": [
+        "Predictable aerial control",
+        "Stable deadzone balance",
+        "Tournament-style response tuning"
+      ],
+      "recommendedPlaystyle": "Competitive ladder and tournament play.",
+      "whatsNew": "TODO: refresh compatibility when the real firmware rules exist."
+    },
+    "configSections": [
+      {
+        "id": "aerial",
+        "label": "Aerial Control",
+        "subtitle": "Tournament-aligned values",
+        "icon": "A",
+        "values": [
+          { "label": "Preset", "value": "Tournament", "highlight": true }
+        ]
+      }
+    ],
+    "compatibilityMeta": {
+      "appVersion": "3.1+",
+      "firmware": "v1.5.0+",
+      "device": "Glydr Pro"
+    },
+    "creatorMeta": {
+      "badgeLabel": "Verified",
+      "publishedCount": 5
+    },
+    "versions": [
+      { "version": "v2.1", "label": "v2.1 (Current)", "publishedAt": "May 09, 2023", "notes": "Tournament snapshot.", "current": true }
+    ],
+    "relatedProfileSlugs": ["high-dpi-aggressive"]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "apex-legends",
+    "name": "Apex Legends",
+    "heroImage": "/images/apex-hero.png",
+    "heroTags": ["Battle Royale", "FPS"],
+    "profileCountLabel": "3,847 profiles",
+    "updatedLabel": "Updated today",
+    "profiles": []
+  },
+  {
+    "slug": "valorant",
+    "name": "Valorant",
+    "heroImage": "/images/cover-valorant.png",
+    "heroTags": ["Tactical", "FPS"],
+    "profileCountLabel": "1,142 profiles",
+    "updatedLabel": "Updated yesterday",
+    "profiles": []
+  },
+  {
+    "slug": "fortnite",
+    "name": "Fortnite",
+    "heroImage": "/images/cover-fortnite.png",
+    "heroTags": ["Build", "Shooter"],
+    "profileCountLabel": "2,208 profiles",
+    "updatedLabel": "Updated today",
+    "profiles": []
+  },
+  {
+    "slug": "call-of-duty-warzone",
+    "name": "Call of Duty: Warzone",
+    "heroImage": "/images/cover-cod.png",
+    "heroTags": ["BR", "Controller"],
+    "profileCountLabel": "1,889 profiles",
+    "updatedLabel": "Updated this week",
+    "profiles": []
+  },
+  {
+    "slug": "overwatch-2",
+    "name": "Overwatch 2",
+    "heroImage": "/images/cover-ow2.png",
+    "heroTags": ["Hero Shooter", "Arena"],
+    "profileCountLabel": "942 profiles",
+    "updatedLabel": "Updated today",
+    "profiles": []
+  },
+  {
+    "slug": "cs2",
+    "name": "CS2",
+    "heroImage": "/images/cover-cs2.png",
+    "heroTags": ["Competitive", "FPS"],
+    "profileCountLabel": "744 profiles",
+    "updatedLabel": "Updated this week",
+    "profiles": []
+  },
+  {
+    "slug": "elden-ring",
+    "name": "Elden Ring",
+    "heroImage": "/images/cover-elden.png",
+    "heroTags": ["Action RPG", "Controller"],
+    "profileCountLabel": "386 profiles",
+    "updatedLabel": "Updated this month",
+    "profiles": []
+  },
+  {
+    "slug": "rocket-league",
+    "name": "Rocket League",
+    "heroImage": "/images/cover-rocket.png",
+    "heroTags": ["Sports", "Competitive"],
+    "profileCountLabel": "418 profiles",
+    "updatedLabel": "Updated this week",
+    "profiles": []
+  }
+]

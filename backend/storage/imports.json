@@ -1,0 +1,34 @@
+[
+  {
+    "id": "9851f6c0-731c-44ed-a2e5-9fbe94843d47",
+    "profileSlug": "pro-movement-config",
+    "profileName": "Pro Movement Config",
+    "version": "v2.3",
+    "gameName": "Apex Legends",
+    "createdAt": "2026-04-15T07:33:07.554Z",
+    "steps": [
+      {
+        "id": "downloaded",
+        "label": "Profile Downloaded",
+        "detail": "Securely fetched from platform",
+        "status": "complete"
+      },
+      {
+        "id": "delivered",
+        "label": "Delivered to Control Panel",
+        "detail": "Synced to your local app",
+        "status": "complete"
+      },
+      {
+        "id": "ready",
+        "label": "Ready to Apply",
+        "detail": "Open app to activate on controller",
+        "status": "complete"
+      }
+    ],
+    "nextAction": {
+      "label": "Open Control Panel",
+      "href": "/todo/control-panel"
+    }
+  }
+]

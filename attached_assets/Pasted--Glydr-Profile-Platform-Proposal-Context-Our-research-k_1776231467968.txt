@@ -1,0 +1,693 @@
+# Glydr Profile Platform Proposal
+
+## Context
+
+Our research kept pointing to the same conclusion: the most valuable version of this product is not a simple profile repository, but a full profile platform.
+
+That distinction matters. A repository stores settings. A platform helps users discover the right profile, understand why it is relevant, trust that it will work, move it into the Control Panel with minimal effort, and successfully use it in a live gaming session. That end-to-end path is where the real product value sits.
+
+This proposal is therefore built around a practical product and platform strategy: create a system that feels simple and reliable for first-time users, remains transparent and capable for advanced users, and gives Glydr a durable foundation that can expand without forcing a major rebuild later.
+
+We also grounded this proposal in Glydr’s actual operating context today. The ecosystem already includes Shopify, Azure, and the existing Control Panel application. The next phase should therefore prioritize focused execution, not unnecessary complexity. Our recommendations aim to support a strong first release while preserving room for richer sync, governance, integrations, and personalization over time.
+
+Across all areas of research, our recommendation is consistent:
+
+* treat the **web platform as the source of truth** for profiles and profile discovery
+* make **web-to-Control Panel handoff as seamless as possible**
+* build on a **structured, versioned, and relational foundation** that reduces future migration pain
+* design the product around **trust, clarity, and successful real-world use**, not just content volume
+
+---
+
+## Product System
+
+### General approach and product thinking
+
+We believe the product should be designed around one core outcome: helping a user go from **“I need a profile”** to **“I found one I trust, I understand what it does, and I can apply it immediately.”**
+
+That requires the profile system to do more than surface raw settings. The user-facing unit of value should be a structured profile object that combines the actual configuration with the context needed to make it usable: game relevance, creator/source attribution, compatibility guidance, version status, and trust indicators.
+
+A strong product system also needs to serve two user modes without feeling split or inconsistent. Some users want the shortest possible path from unboxing to playing. Others want to inspect details, compare options, understand changes, and eventually customize. The product should support both, but through one coherent system.
+
+Instead of treating beginner and advanced needs as separate feature sets, we recommend a layered experience:
+
+* the default experience should emphasize speed, clarity, and confidence
+* the deeper experience should expose transparency, detail, and control
+
+In practice, that means the same profile system should support both of the following behaviors:
+
+* a new user can quickly find recommended profiles, see that they are compatible and trusted, and import them with minimal friction
+* a more advanced user can inspect configuration detail, version history, source credibility, and selection rationale before deciding what to use
+
+This is an important product principle because it reduces duplication in the experience. Rather than building a “simple mode” and a separate “advanced mode,” Glydr can build one system with progressive depth. The top layer helps users act quickly; the deeper layer helps them act confidently.
+
+That is also why discovery and import should be treated as part of the same product flow. The most important moment is not when a profile is viewed. It is when the user decides it is trustworthy and applies it successfully. Everything in the product system should reinforce that handoff.
+
+### Mandatory features
+
+The first meaningful version of the product system should include the following:
+
+* **Structured profile objects** rather than loose downloadable files, so profiles can carry metadata, compatibility information, trust indicators, and versioning in a consistent way
+* **Game-specific discovery and profile pages** that clearly explain what a profile is for, who it is from, whether it is compatible, and why a user should trust it
+* **Strong trust and clarity signals** such as attribution, official vs community distinction, verification where relevant, popularity or usage indicators, and visible status for current versus deprecated profiles
+* **Progressive profile detail** so the default view remains accessible, while deeper layers expose configuration transparency, version history, and richer technical context for more advanced users
+* **One-click import from web to Control Panel** as the core product action, with a clear success state so users know the handoff worked
+* **Basic account continuity** across the web experience and device/application experience, so the platform can associate users, imports, and future personalization cleanly
+* **Compatibility and firmware awareness** so users are not encouraged to apply profiles that are unsuitable for their hardware, software version, or current environment
+
+These features work together. Recommended discovery, trust signals, deeper profile context, and import success should not be treated as separate ideas; they are all part of the same product system whose job is to reduce hesitation and increase successful use.
+
+### Nice-to-have features in the future or if time allows
+
+Once the core system is working reliably, the next layer of product depth could include:
+
+* profile collections, bundles, or curated loadouts
+* favorites, recently used profiles, and saved states
+* profile comparison views
+* creator pages and richer creator credibility systems
+* personalized recommendations based on owned games, recent usage, or linked account data
+* cloning, remixing, or derivative-profile workflows
+* comments, usage notes, or lightweight community feedback
+* support-oriented flows such as guided troubleshooting, compatibility warnings, and recommended fallbacks
+* event, seasonal, or promotional profile surfacing
+
+The key point is that these should build on top of the structured profile system, not replace it. If the foundation is right, these additions become incremental rather than disruptive.
+
+---
+
+## Platform Design and Data Modeling
+
+### General approach and platform thinking
+
+The most important platform decision is deciding where authoritative product state should live.
+
+Our recommendation is that the **web platform should own the canonical state** for profiles, profile metadata, compatibility logic, discovery behavior, and user-facing profile history. The Control Panel should primarily act as the execution layer that receives profiles, displays local availability, and applies them to the device.
+
+We recommend this model for three reasons.
+
+First, it gives Glydr flexibility. If the web platform is the source of truth, the team can improve discovery, governance, search, moderation, recommendations, and integrations without being blocked by Control Panel release cycles.
+
+Second, it improves consistency. Keeping authoritative state in one place reduces the risk of mismatched profile status, outdated metadata, or fragmented logic across web and app surfaces.
+
+Third, it supports a practical rollout. Glydr can start with a thin, reliable web-to-Control Panel handoff and later add richer sync, usage history, multi-device awareness, or reconciliation without needing to reverse the system architecture.
+
+In other words, the platform should be designed so the first version is intentionally lightweight in implementation, but not lightweight in structure.
+
+### Proposed data model
+
+At a high level, we recommend modeling the following core entities:
+
+#### 1. Profile
+
+The primary user-facing object.
+
+A profile should include:
+
+* profile ID
+* display name and description
+* associated game
+* source / author / creator attribution
+* publish status such as draft, published, deprecated, or archived
+* trust and visibility indicators
+* created and updated timestamps
+* compatibility metadata
+* references to one or more configuration versions
+
+#### 2. Profile Configuration
+
+The structured settings payload that ultimately determines device behavior.
+
+This should include:
+
+* configuration ID
+* schema version
+* parameters and values
+* validation rules
+* export or transform logic where necessary for Control Panel delivery
+* compatibility constraints
+
+#### 3. Profile Version
+
+A versioned release object that links a user-facing profile to a specific configuration state.
+
+This should include:
+
+* profile version ID
+* parent profile reference
+* configuration reference
+* semantic or internal version number
+* release notes or change summary
+* publish state
+* rollback eligibility
+
+#### 4. Game
+
+The canonical game entity used across discovery and compatibility.
+
+This should include:
+
+* game ID
+* display name
+* aliases or alternate naming
+* external platform identifiers such as Steam IDs where relevant
+* genre, tags, or categorization metadata
+* media assets and supported status
+
+#### 5. User
+
+The canonical Glydr identity object.
+
+This should include:
+
+* user ID
+* primary account identity
+* linked external providers
+* usage history or profile activity where appropriate
+* customer verification or trust markers if needed later
+
+#### 6. Device / App Context
+
+A representation of the user’s current environment.
+
+This should include:
+
+* device association
+* firmware version
+* Control Panel version
+* import and apply history where useful
+* current compatibility context
+
+#### 7. Integration Link Objects
+
+Modular records for Steam, Discord, Shopify, and future integrations.
+
+These should remain separate from the core profile model so external account data enriches the platform without distorting core product logic.
+
+Taken together, this model gives Glydr a clean separation between what users see, what the system executes, and how the product evolves over time.
+
+### Versioning approach
+
+Versioning should be treated as a first-class system concern from the beginning.
+
+This is not just a technical preference. It affects trust, support, safety, and platform maintainability.
+
+Users need to know whether a profile is current, whether it changed recently, and whether it is still appropriate for their hardware and software context. Internally, Glydr needs the ability to update configuration schemas, revise profiles safely, preserve history, and roll back when needed without breaking working flows.
+
+We recommend versioning at multiple layers:
+
+* the **user-facing profile release**
+* the **underlying configuration payload**
+* the **configuration schema**
+* any **delivery/export format** required for Control Panel compatibility
+
+The practical model should be:
+
+* separate the human-facing profile from the machine-facing configuration payload
+* assign stable identifiers to profile versions
+* version the schema independently from profile content
+* preserve release history and rollback paths
+* mark older versions clearly rather than silently replacing them
+
+That approach gives Glydr room to move quickly without creating hidden breakage or confusion later.
+
+### Search and discovery methods
+
+Search and discovery should support both direct intent and browsing behavior.
+
+For direct intent, users should be able to find profiles by:
+
+* game title
+* external platform metadata where relevant
+* profile title
+* creator/source
+* tags, genres, or playstyle labels
+
+For browsing, the platform should emphasize structured discovery surfaces such as:
+
+* featured or recommended profiles
+* trusted or official profiles
+* trending or popular profiles
+* recently updated profiles
+* game landing pages with clear top choices
+
+Early on, discovery quality matters more than content volume. A well-organized, curated library with strong trust and compatibility context is more valuable than a large but noisy index. Over time, discovery can become more personalized using linked account data, owned games, recently played games, prior imports, favorites, or creator affinity.
+
+### Security and governance
+
+Even in an early-stage release, the platform needs baseline governance.
+
+That includes:
+
+* role-based permissions for internal publishing and moderation
+* audit visibility around profile changes
+* validation before a profile or configuration can be published
+* protection against malformed, unsafe, or invalid profile payloads
+* clear distinction between official, verified, community, and experimental content
+* compatibility checks before import or apply
+* careful handling of linked identity data and account permissions
+
+We do not think Glydr needs a heavy enterprise governance layer on day one. However, it does need enough structure to keep trust high, prevent accidental breakage, and avoid content quality drift as the library grows.
+
+### Profile delivery mechanism into the Control Panel
+
+The web-to-Control Panel handoff is the most important cross-surface workflow in the proposal.
+
+Our recommendation for the initial delivery model is:
+
+1. A user discovers a profile on the web platform.
+2. The user selects an action such as **Open in Control Panel** or **Import to Control Panel**.
+3. The platform generates, resolves, or references a delivery artifact the Control Panel can consume.
+4. The Control Panel receives the artifact through the lightest feasible integration path.
+5. The profile appears immediately within the Control Panel UI.
+6. The user applies it to the connected device through one clear final action, or an even more streamlined flow if that can be implemented safely.
+
+The important strategic choice here is to avoid overbuilding the first version. Phase one does not require a perfect full-sync platform. It requires a reliable, seamless handoff that feels close to one-click from the user’s perspective.
+
+Once that is stable, Glydr can add deeper platform behavior such as:
+
+* cloud-saved profiles and richer sync
+* app-to-platform status reporting
+* last-applied profile history
+* firmware-aware filtering improvements
+* multi-device awareness and reconciliation
+
+### Nice-to-have features in the future or if time allows
+
+Beyond the initial platform foundation, future improvements could include:
+
+* richer cloud/local sync behavior
+* profile lineage for remixed or derivative profiles
+* automated compatibility scoring
+* more advanced moderation tools
+* telemetry-informed recommendations and support workflows
+* multi-device profile state management
+
+These should be layered on only after the canonical data model, versioning, and delivery workflow are reliable.
+
+---
+
+## Integrations
+
+### General integration philosophy
+
+We recommend treating integrations as product accelerators rather than checklist features.
+
+Each integration should have a clear job: reduce friction, improve identity continuity, enrich personalization, strengthen trust, or support commerce and support operations. At the same time, Glydr should not allow any one external provider to become the product’s true identity backbone.
+
+Our recommendation is to maintain a **Glydr-native account layer** and treat Steam, Discord, Shopify, and future integrations as linked providers or context sources. That keeps the internal model clean while still letting the platform benefit from external data.
+
+### Steam integrations
+
+#### Login
+
+Steam can serve as a useful linked login or account connection path, especially for users whose gaming identity already lives there.
+
+#### Customization, extra info, personalization, and trust features
+
+Steam is especially valuable beyond authentication because it can improve content relevance and metadata quality. Potential uses include:
+
+* identifying recently played or most-played games to improve onboarding and recommendations
+* normalizing game entities through Steam-linked metadata where applicable
+* making profile discovery more relevant by surfacing profiles for games the user is likely to care about
+* supporting public gaming-identity context or credibility signals where appropriate
+
+Steam therefore has real product value as both an identity layer and a personalization layer.
+
+### Discord
+
+#### Login
+
+Discord can function as a lightweight linked identity option, especially for community-native users.
+
+#### Customization, extra info, personalization, and trust features
+
+Discord becomes more useful when treated as a community context layer. Potential uses include:
+
+* creator verification or trusted-role signals
+* support continuity through linked community identity
+* profile sharing into Discord contexts
+* bot or slash-command experiences for profile lookup or onboarding
+* event-driven or community-driven profile promotion
+
+Discord is most valuable when Glydr wants the product to feel connected to the community around it, not just to static profile content.
+
+### Shopify
+
+#### Login
+
+Shopify should not become the primary identity system, but it is an important commerce and customer-continuity layer.
+
+#### Customization, extra info, personalization, and trust features
+
+Potential uses include:
+
+* linking verified device ownership or purchase state to product access
+* improving onboarding continuity after purchase
+* simplifying entitlement and support verification
+* reducing fragmentation between the store journey and the product journey
+
+This integration matters because the post-purchase experience should feel connected. Customers should not feel like they are entering an entirely separate ecosystem after buying the device.
+
+### How to integrate everything cleanly
+
+To keep the system maintainable, we recommend the following model:
+
+* Glydr owns the canonical user account
+* external providers are linked identities or enrichment sources
+* provider-specific data remains modular and permission-aware
+* the core product model does not depend on one provider’s structure or availability
+
+This gives Glydr flexibility in how it handles login, trust signals, personalization, customer verification, and future expansion into other gaming ecosystems.
+
+---
+
+## Tech Stack
+
+From our perspective, the stack decision should be framed around one central tradeoff: **speed and simplicity today vs. infrastructure control and migration flexibility later**. Glydr is still early enough that developer speed matters a great deal, but the product is also becoming structured enough that the backend and data model should not be treated as disposable. Because of that, we think the clearest way to present this decision is through four realistic combinations of hosting and database choices.
+
+All four options below can work. The difference is not whether they are technically viable, but what they optimize for: faster shipping, lower operational complexity, cleaner long-term architecture, or tighter alignment with Glydr’s current Azure environment.
+
+### Option 1 — Vercel + Convex
+
+This is the fastest and most developer-friendly option. It pairs a modern frontend hosting platform with a highly abstracted backend platform that already includes many of the features a young product team would otherwise need to build or configure manually.
+
+**Feature capabilities**
+
+* Fast frontend deployment and iteration
+* Strong out-of-the-box developer experience
+* Built-in backend capabilities such as database storage, file storage, search, and scheduled jobs
+* Minimal infrastructure setup for an early-stage product
+
+**Pros**
+
+* Fastest path to implementation
+* Lowest early operational burden
+* Strong fit for rapid iteration during the semester
+* Makes it easier to ship a polished first version quickly
+
+**Cons**
+
+* Greater long-term platform coupling
+* Less natural fit for a product that may evolve into a more structured, governed, and relational platform
+* More likely to require a migration project later if Glydr outgrows the backend assumptions
+
+**Short-term costs**
+This is likely one of the most favorable options in the short term. It keeps infrastructure light, reduces backend setup time, and is well suited for an early-stage platform with relatively modest traffic and a small development team.
+
+**Long-term costs**
+Long term, the main concern is not the first few months of billing but architectural lock-in. If the platform becomes more complex, Glydr may eventually pay a premium for convenience and could face a larger migration effort if it later wants a more conventional relational backend.
+
+### Option 2 — Vercel + Azure Postgres
+
+This is the most balanced option. It keeps the frontend and product-development experience fast and modern, while placing the most important long-term asset — the data model — in a conventional managed Postgres environment.
+
+**Feature capabilities**
+
+* Fast frontend/product iteration
+* Relational database foundation suited to profiles, users, games, versions, and integrations
+* Lower long-term migration risk than a more opinionated backend platform
+* Good support for richer governance, compatibility logic, moderation, and future platform depth
+
+**Pros**
+
+* Strong balance of speed now and durability later
+* Keeps the frontend development experience lightweight and efficient
+* Uses a standard relational core that is easier to reason about and preserve over time
+* Better fit for a system that is increasingly structured and versioned
+
+**Cons**
+
+* More backend wiring than Option 1
+* Slightly more operational complexity because hosting and database live in different environments
+* Requires some coordination between Vercel-style hosting and Azure database infrastructure
+
+**Short-term costs**
+This should still feel manageable in the short term. Hosting remains fast and low-friction, while Azure Postgres introduces a more “real” database layer from day one. It is somewhat more involved than Option 1, but still practical at Glydr’s current size.
+
+**Long-term costs**
+This option is much stronger than Option 1 in the long term because it avoids locking the core system into an opinionated backend platform. Even if Glydr later changes hosting or consolidates infrastructure, a Postgres-based core will be easier to preserve.
+
+### Option 3 — Azure Hosting + Convex
+
+This option combines Azure-based hosting with Convex as the backend. It is technically viable, but from our perspective it is the hardest option to justify cleanly because it combines the configuration and infrastructure overhead of Azure hosting with the long-term platform coupling of Convex.
+
+**Feature capabilities**
+
+* Azure-hosted application layer
+* Convex-powered backend logic and storage
+* Ability to keep web hosting within Azure while still using a fast, abstracted backend platform
+* Access to Azure-native hosting controls and Convex developer speed at the same time
+
+**Pros**
+
+* Lets Glydr keep the hosting layer within Azure if that is important organizationally
+* Still benefits from Convex’s strong development speed on the backend
+* Can work if Azure continuity matters more than frontend deployment convenience
+
+**Cons**
+
+* Less coherent than the other options
+* Keeps Azure’s hosting complexity while still accepting Convex lock-in
+* Does not offer as much short-term simplicity as Option 1 or as much long-term clarity as Option 4
+
+**Short-term costs**
+This is unlikely to be the cheapest or simplest-feeling option in the short term. Glydr would take on some of the complexity of Azure hosting while also relying on a separate backend platform with its own usage and billing model.
+
+**Long-term costs**
+Long term, this option is also less compelling than the others. If Glydr wants to stay deeply Azure-centric, it generally makes more sense to keep the data layer there as well. If Glydr wants the speed and abstraction of Convex, it generally makes more sense to pair it with a faster frontend host.
+
+### Option 4 — Azure Hosting + Azure Postgres
+
+This is the most infrastructure-consistent and enterprise-like option. Everything stays within Azure: the application layer, the relational database, and potentially surrounding services such as storage, authentication, and jobs if Glydr chooses to grow into them over time.
+
+**Feature capabilities**
+
+* Full Azure-native hosting and database stack
+* Standard relational data foundation
+* Strong alignment with long-term infrastructure consistency
+* Easier path if Glydr wants one cloud environment for the full system
+
+**Pros**
+
+* Lowest vendor sprawl
+* Most internally consistent long-term architecture
+* Strong fit if Glydr expects Azure to remain its long-term infrastructure home
+* Better suited than Convex for a durable, versioned, governed platform
+
+**Cons**
+
+* Slowest and heaviest to implement initially
+* More infrastructure setup and configuration work
+* Less convenient for quick product iteration during an early-stage build
+
+**Short-term costs**
+This is likely the heaviest option in the short term, both operationally and financially. Even if the direct monthly bill remains manageable, the real short-term cost is also developer time and setup complexity.
+
+**Long-term costs**
+Long term, this is a strong option if Glydr wants one infrastructure home and is comfortable accepting more setup now to reduce fragmentation later. It is not necessarily the lowest-cost option forever, but it is structurally clean and less likely to require a major infrastructure rethink if the company stays Azure-centric.
+
+### Overall comparison
+
+At a high level, the four options separate into the following categories:
+
+* **Best for development speed now:** Vercel + Convex
+* **Best balance of speed now and migration flexibility later:** Vercel + Azure Postgres
+* **Best for Azure consistency with some abstraction retained:** Azure Hosting + Convex
+* **Best for long-term Azure-native consistency:** Azure Hosting + Azure Postgres
+
+We think the most important takeaway is that Glydr does not need to choose between “the absolute cheapest possible stack” and “the most enterprise-grade stack imaginable.” The real decision is whether the company wants to optimize more heavily for **shipping speed today** or for **infrastructure consistency and control tomorrow**.
+
+### Cost note
+
+Any cost estimates in this section should be treated as directional rather than fixed. These platforms bill in different ways — some based on seats plus usage, some on provisioned compute, and some on storage, bandwidth, or a combination of all three. Exact monthly cost will depend on traffic, storage volume, request patterns, team size, region, and how many supporting services Glydr chooses to add.
+
+For that reason, the most useful way to interpret the options is not “Option X will always cost Y,” but rather:
+
+* which options are structurally cheaper at low scale
+* which options become more expensive as usage grows
+* which options are most likely to create migration work later
+
+## Other Safety, Security, and Risks to Take Into Account
+
+Even with a lean first release, there are several important risks that should be designed around early.
+
+### Content quality and moderation risk
+
+If profiles eventually include creator-driven or community-generated content, Glydr will need a clear distinction between official, verified, community, and experimental profiles. Without that separation, trust will erode quickly and support burden will rise.
+
+### Compatibility drift
+
+Profiles can age out of reliability as games update, firmware changes, and Control Panel behavior evolves. The platform therefore needs visible status, compatibility awareness, and versioning that prevents outdated profiles from appearing current.
+
+### Identity complexity
+
+As Shopify, Steam, Discord, and Glydr-native accounts interact, the account model can become fragmented quickly. This is why the proposal consistently recommends a Glydr-native identity core with linked providers rather than a provider-owned account model.
+
+### Security baseline
+
+Even a first version should validate profile payloads, restrict publishing permissions, protect linked identity data, and maintain enough auditability to understand who changed what and when.
+
+### Migration risk
+
+If the early stack is optimized too heavily for immediate convenience, Glydr may later pay for that decision when it needs stronger versioning, moderation, interoperability, analytics, or sync behavior. This is one of the main reasons we favor a relational core from the beginning.
+
+### Support burden risk
+
+Setup confusion, poor compatibility messaging, weak trust signals, or unreliable import flows will convert directly into support burden. Product clarity is therefore not just a UX issue; it is an operational risk-control mechanism.
+
+---
+
+## Misc.
+
+### Recommended sequencing
+
+If we were sequencing this work pragmatically, we would recommend the following progression:
+
+#### Phase 1: Foundation
+
+* define the canonical data model
+* choose the relational core and deployment direction
+* establish versioning and compatibility strategy
+* make the web platform the source of truth
+
+#### Phase 2: First meaningful user flow
+
+* build game and profile discovery
+* launch clear, trusted profile pages
+* implement seamless web-to-Control Panel handoff
+* validate that users can reliably go from discovery to successful application
+
+#### Phase 3: Identity and integrations
+
+* implement the Glydr-native account model
+* connect Shopify for customer continuity and entitlement context
+* add Steam and Discord where they materially improve relevance, trust, or onboarding
+
+#### Phase 4: Expansion
+
+* richer sync and profile state continuity
+* personalization and recommendations
+* creator systems and moderation depth
+* stronger support tooling and operational visibility
+* broader ecosystem integrations
+
+## Suggested Work Split (5 Team Members)
+
+To move quickly toward an MVP while keeping responsibilities clear, the work can be divided into five parallel streams. Each stream owns a layer of the system but coordinates closely with the others.
+
+### 1. Frontend / Web Experience
+
+Focus: user-facing product experience.
+
+Responsibilities:
+
+* implement game discovery pages
+* build profile pages and UI components
+* implement trust indicators, profile metadata display, and version visibility
+* build browsing surfaces such as featured, popular, and recommended profiles
+* implement the import action that triggers the web-to-Control Panel handoff
+* coordinate with backend APIs for profile retrieval and search
+
+Key Deliverables:
+
+* game browsing UI
+* profile detail UI
+* search and discovery components
+* import button and user feedback states
+
+---
+
+### 2. Backend / Platform API
+
+Focus: application logic and platform services.
+
+Responsibilities:
+
+* build APIs for profiles, games, versions, and discovery
+* implement profile publishing and versioning logic
+* manage compatibility checks before profile delivery
+* implement profile delivery endpoint used by Control Panel
+* manage integration endpoints (Steam, Discord, Shopify)
+
+Key Deliverables:
+
+* REST or API layer
+* profile version management
+* compatibility validation
+* integration endpoints
+
+---
+
+### 3. Data Modeling / Database Layer
+
+Focus: relational schema and data integrity.
+
+Responsibilities:
+
+* implement Postgres schema based on proposed data model
+* create tables for profiles, configurations, versions, users, games, and integrations
+* manage migrations and schema evolution
+* enforce relational integrity and indexing
+* support search queries and discovery performance
+
+Key Deliverables:
+
+* database schema
+* migration scripts
+* indexed search tables
+* schema documentation
+
+---
+
+### 4. Identity, Auth, and Integrations
+
+Focus: authentication, accounts, and external systems.
+
+Responsibilities:
+
+* implement login system and Glydr user accounts
+* integrate Steam login and owned-games retrieval
+* implement Discord identity linking
+* connect Shopify purchase verification if needed
+* manage linked identity records
+
+Key Deliverables:
+
+* auth flow
+* Steam login + API integration
+* identity linking logic
+* secure token/session management
+
+---
+
+### 5. Control Panel Integration / Delivery Layer
+
+Focus: the bridge between web platform and device software.
+
+Responsibilities:
+
+* implement the web-to-Control Panel import flow
+* ensure profile configs can be downloaded and parsed by the app
+* validate configuration format compatibility
+* test applying profiles to the device
+* ensure reliable success feedback to the web platform
+
+Key Deliverables:
+
+* profile delivery mechanism
+* Control Panel import logic
+* configuration validation
+* end-to-end testing of profile application
+
+---
+
+### Final recommendation
+
+Our overall recommendation is to build this as a **structured profile platform** with:
+
+* the **web layer as the source of truth**
+* the **Control Panel as the execution layer**
+* a **Postgres-centered architecture** that minimizes migration pain
+* a product experience built around **trust, clarity, and successful use**
+
+If Glydr executes against those principles, the result is not just a better profile library. It is a stronger product system, a cleaner platform strategy, and a more durable foundation for future growth. Kushagra Bharti 
